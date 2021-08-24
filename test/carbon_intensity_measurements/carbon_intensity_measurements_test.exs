@@ -25,6 +25,23 @@ defmodule CarbonIntensity.CarbonIntensityMeasurementsTest do
     assert nil == CarbonIntensityMeasurements.get(DateTime.add(from_datetime, _mins_5 = -300))
   end
 
+  test "upsert upsert measurement" do
+    {:ok, _measurement} = CarbonIntensityMeasurements.upsert(~U[2021-08-24 13:00:00Z], 100)
+    assert %{actual_intensity: 100} = CarbonIntensityMeasurements.get(~U[2021-08-24 13:00:00Z])
+
+    {:ok, _measurement} = CarbonIntensityMeasurements.upsert(~U[2021-08-24 13:00:00Z], 500)
+    assert %{actual_intensity: 500} = CarbonIntensityMeasurements.get(~U[2021-08-24 13:00:00Z])
+  end
+
+  test "get_latest returns latest measurement" do
+    assert nil == CarbonIntensityMeasurements.get_latest()
+
+    CarbonIntensityMeasurements.create!(~U[2021-08-24 13:00:00Z], 100)
+    CarbonIntensityMeasurements.create!(~U[2021-08-24 14:00:00Z], 300)
+
+    assert %{actual_intensity: 300, from: ~U[2021-08-24 14:00:00Z]} = CarbonIntensityMeasurements.get_latest()
+  end
+
   test "all_by_period returns list of measurements from given period" do
     CarbonIntensityMeasurements.create!(~U[2021-08-24 13:00:00Z], 100)
     CarbonIntensityMeasurements.create!(~U[2021-08-24 13:30:00Z], 200)
@@ -37,5 +54,14 @@ defmodule CarbonIntensity.CarbonIntensityMeasurementsTest do
     assert %{actual_intensity: 300, from: ~U[2021-08-24 14:00:00Z]} = mes_2
 
     assert [] = CarbonIntensityMeasurements.all_by_period(~U[2021-08-24 15:00:00Z], ~U[2021-08-24 15:30:00Z])
+  end
+
+  test "all return list of all measurements" do
+    CarbonIntensityMeasurements.create!(~U[2021-08-24 13:00:00Z], 100)
+    CarbonIntensityMeasurements.create!(~U[2021-08-24 13:30:00Z], 200)
+    CarbonIntensityMeasurements.create!(~U[2021-08-24 14:00:00Z], 300)
+
+    assert [%{actual_intensity: 100}, %{actual_intensity: 200}, %{actual_intensity: 300}] =
+             CarbonIntensityMeasurements.all()
   end
 end

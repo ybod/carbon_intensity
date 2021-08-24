@@ -7,7 +7,10 @@
 # General application configuration
 import Config
 
-config :carbon_intensity, ecto_repos: [CarbonIntensity.Repo]
+config :carbon_intensity,
+  ecto_repos: [CarbonIntensity.Repo],
+  env: config_env(),
+  update_interval: :timer.minutes(5)
 
 # Configures Elixir's Logger
 config :logger, :console, format: "$time $metadata[$level] $message\n"

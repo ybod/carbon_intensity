@@ -41,6 +41,11 @@ defmodule CarbonIntensity.CarbonIntensityMeasurements do
     |> Repo.all()
   end
 
+  def all() do
+    from(measurement in CarbonIntensityMeasurement, order_by: measurement.from)
+    |> Repo.all()
+  end
+
   # Helpers
 
   defp get_changeset(from, actual_intensity) do

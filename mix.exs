@@ -32,6 +32,7 @@ defmodule CarbonIntensity.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:finch, "~> 0.8.1"},
       {:jason, "~> 1.2"},
+      {:clerk, github: "ybod/clerk"},
       # Testing
       {:mox, "~> 1.0", only: :test}
     ]

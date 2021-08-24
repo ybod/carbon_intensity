@@ -1,0 +1,31 @@
+{
+    "data": [
+        {
+            "from": "2021-08-23T22:00Z",
+            "to": "2021-08-23T22:30Z",
+            "intensity": {
+                "forecast": 208,
+                "actual": null,
+                "index": "moderate"
+            }
+        },
+        {
+            "from": "2021-08-23T22:30Z",
+            "to": "2021-08-23T23:00Z",
+            "intensity": {
+                "forecast": 199,
+                "actual": -225,
+                "index": "moderate"
+            }
+        },
+        {
+            "from": "2021-08-23T23:00Z",
+            "to": "2021-08-23T23:30Z",
+            "intensity": {
+                "forecast": 195,
+                "actual": 195,
+                "index": "moderate"
+            }
+        }
+    ]
+}
