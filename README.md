@@ -1,21 +1,24 @@
 # CarbonIntensity
 
-**TODO: Add description**
+UK National Grid CO2 emissions related to electricity production
+
+Applications requires [TimescaleDB](https://www.timescale.com/) to run.
+
+Application will use [Official Carbon Intensity API for Great Britain](https://carbon-intensity.github.io/api-definitions/#carbon-intensity-api-v2-0-0) to get Carbon Intensity data for te last 24hrs (UTC+0)
+
+Data will be updated every 5 min. This interval can be changed with `update_interval` parameter `config/config.exs`
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `carbon_intensity` to your list of dependencies in `mix.exs`:
+- start local TimescaleDB instance with `docker compose up -d`
+- dependendices and database setup `mix setup`
+- run app locally in dev mode `mix run --no-halt`
 
-```elixir
-def deps do
-  [
-    {:carbon_intensity, "~> 0.1.0"}
-  ]
-end
-```
+## Testing
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/carbon_intensity](https://hexdocs.pm/carbon_intensity).
+- start local TimescaleDB instance with `docker compose up`
+- `mix test`
+
+One test against the real API will be scipped. You can comment skip tag to run this test.
+
 
