@@ -8,7 +8,8 @@ defmodule CarbonIntensity.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      CarbonIntensity.Repo
+      CarbonIntensity.Repo,
+      {Finch, name: CarbonIntensity.Finch}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

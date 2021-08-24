@@ -29,7 +29,11 @@ defmodule CarbonIntensity.MixProject do
   defp deps do
     [
       {:ecto_sql, "~> 3.0"},
-      {:postgrex, ">= 0.0.0"}
+      {:postgrex, ">= 0.0.0"},
+      {:finch, "~> 0.8.1"},
+      {:jason, "~> 1.2"},
+      # Testing
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 
