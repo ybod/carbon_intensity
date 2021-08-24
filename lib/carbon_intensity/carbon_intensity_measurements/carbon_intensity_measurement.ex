@@ -17,6 +17,7 @@ defmodule CarbonIntensity.CarbonIntensityMeasurement do
     carbon_intensity_measurements
     |> cast(params, [:from, :actual_intensity])
     |> validate_required([:from, :actual_intensity])
+    |> unique_constraint(:from)
     |> validate_number(:actual_intensity, greater_than: 0)
   end
 end

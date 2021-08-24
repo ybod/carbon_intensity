@@ -7,6 +7,7 @@ defmodule CarbonIntensity.Repo.Migrations.CreateCarbonIntensityMeasurements do
       add(:actual_intensity, :integer, null: false)
     end
 
+    create unique_index(:carbon_intensity_measurements, [:from])
     execute("SELECT create_hypertable('carbon_intensity_measurements', 'from')")
   end
 end
