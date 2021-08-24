@@ -1,0 +1,14 @@
+version: "3.9"  # optional since v1.27.0
+volumes:
+    postgres_13_data: {}
+services:
+    timescaledb:
+        image: timescale/timescaledb:2.4.1-pg13
+        restart: always
+        ports:
+            - 15432:5432
+        volumes:
+            - postgres_13_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
